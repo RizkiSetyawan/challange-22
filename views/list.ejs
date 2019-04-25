@@ -4,6 +4,7 @@
    <h2>FILTER</h2>
 
    <form action="/">
+      <input type="hidden" name="page" value="1">
       <div class="form-group row">
          <input class="form-check-input col-sm-1" type="checkbox" name="id3" id="defaultCheck1"
             <%= (query.id3) ? 'checked': ''%>>
@@ -118,15 +119,18 @@
 
                <nav aria-label="Page navigation example">
                   <ul class="pagination">
-                     <li class="page-item<%= pagination.page == 1 ?' disabled' : ''%>"><a class="page-link" href="/?page=<%=
-                           parseInt(pagination.page)-1%>">Previous</a>
+                     <li class="page-item<%= pagination.page == 1 ?' disabled' : ''%>"><a class="page-link"
+                           href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${parseInt(pagination.page)-1}`) %>">Previous</a>
                      </li>
                      <% for (let i = 1; i <= pagination.pages; i++) {%>
                      <li class="page-item<%= i == pagination.page ?' active' : ''%>"><a class="page-link"
-                           href="/?page=<%= i %>"><%= i %></a></li>
+                           href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${i}`) %>"><%= i %></a>
+                     </li>
                      <% } %>
                      <li class="page-item<%= pagination.page == pagination.pages ?' disabled' : ''%>"><a
-                           class="page-link" href="/?page=<%= parseInt(pagination.page) + 1%>">Next</a></li>
+                           class="page-link"
+                           href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${parseInt(pagination.page)+1}`) %>">Next</a>
+                     </li>
                   </ul>
                </nav>
 

@@ -7,9 +7,9 @@ var url = "mongodb://localhost:27017/";
 router.get('/', function (req, res) {
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
     const db = client.db("test");
-
+    const url = req.url == '/' ? '/?page=1' : req.url;
     const page = req.query.page || 1
-    const limit = 5
+    const limit = 3
     const skip = (page - 1) * limit
     let obj = {}
 
@@ -48,7 +48,7 @@ router.get('/', function (req, res) {
           moment,
           query: req.query,
           pagination: {
-            page, count, pages
+            page, count, pages, url
           },
         })
       });
@@ -87,6 +87,8 @@ router.get('/edit/:id', (req, res) => {
     const db = client.db("test");
     db.collection("crud").find({ _id: parseInt(req.params.id) }).toArray(function (err, docs) {
       let item = docs[0]
+      console.log(item);
+
       res.render('edit', {
         item,
         moment,

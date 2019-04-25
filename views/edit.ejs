@@ -1,0 +1,55 @@
+<% include ./partials/header %>
+
+<div class="container">
+   <br>
+   <h1>Edit Data</h1>
+   <form class="" method="post">
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label" for="id">ID</label>
+         <div class="col-sm-10">
+            <input type="text" class="form-control" name="id" placeholder="ID" value="<%=item._id%>" disabled>
+         </div>
+      </div>
+      <div class=" form-group row">
+         <label class="col-sm-2 col-form-label" for="string">STRING</label>
+         <div class="col-sm-10">
+            <input type="text" class="form-control" name="string" placeholder="String" value="<%=item.string%>">
+         </div>
+      </div>
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label" for="integer">Integer</label>
+         <div class="col-sm-10">
+            <input type="text" class="form-control" name="integer" placeholder="Integer" value="<%=item.integer%>">
+         </div>
+      </div>
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label" for="float">Float</label>
+         <div class="col-sm-10">
+            <input type="text" class="form-control" name="float" placeholder="Float" value="<%=item.float%>">
+         </div>
+      </div>
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label" for="date">Date</label>
+         <div class="col-sm-10">
+            <input type="date" class="form-control" name="date" id="date" placeholder="<%=item.date%>"
+               value="<%=moment(item.date2).format('YYYY-MM-DD')%>">
+         </div>
+      </div>
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label" for="boolean">Boolean</label>
+         <div class="col-sm-10">
+            <select name="boolean" class="form-control">
+               <% if(item.boolean2 == "false"){%>
+               <option selected>false</option>
+               <option>true</option>
+               <%} else {%>
+               <option selected>true</option>
+               <option>false</option>
+               <%}%>
+        </select>
+      </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+</div>
+    <% include ./partials/footer %>
